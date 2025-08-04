@@ -22,8 +22,13 @@
 3. [磁盘分区](#磁盘分区)
 4. [安装及配置基本系统](#安装及配置基本系统)
 5. [安装grub引导](#安装grub引导)
-6. [安装基础程序](#安装基础程序)
-7. [安装输入法](#安装输入法)
+6. [安装微码](#安装微码)
+7. [本地化设置](#本地化设置)
+8. [设置主机名](#设置主机名)
+9. [设置账户](#设置账户)
+10. [安装基础程序](#安装基础程序)
+11. [安装输入法](#安装输入法)
+
 
 ## **连接网络**
 
@@ -216,68 +221,6 @@ cat /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-### 4. 本地化设置
-
-1. 使用nano编辑 `/etc/locale.gen`
-
-```bash
-nano /etc/locale.gen    # 取消"#"注释
-```
-取消"#"注释以设置需要的语言环境如 `en_US.UTF-8 UTF-8`, `zh_CN.UTF-8 UTF-8`,`UTF-8`
-
-2. 应用语言环境设置
-
-```bash
-locale-gen # 应用语言文件会输出注释掉的语言选项
-```
-
-3. 设置系统语言环境变量，用echo快速添加文本到 `/etc/locale.conf`
-
-```bash
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-```
-
-### 5. 设置主机名
-
-**编辑 `/etc/hostname`，写入你想要的名称例如:"我的电脑"**
-
-```bash
-echo "这里写名字不要用非英文的字符" > /etc/hostname
-```
-
-**编辑 `/etc/hosts`，添加 # 替换以下 `myarch` 为你的主机名**
-
-```text
-127.0.0.1   localhost
-::1         localhost
-127.0.1.1   这里填写你上一步设置的名字.localdomain 这里同样是你设置的名字
-```
-
-### 6. 设置账户 `<username>`是你的用户名
-
-```bash
-passwd    # 设置root的密码
-useradd -m -G wheel -s /bin/bash <username>  #添加账户
-userdel -f <username>    # 删除账户 -r 文件夹也一起删除！！
-passwd <username>        # 设置用户密码
-```
-
-### 7. 账户提权sudo用nano编辑 `/etc/sudoers`
-
-```bash
-nano /etc/sudoers
-```
-把`# %wheel ALL=(ALL:ALL) ALL`前面的#号和空格删除让它变成这样: `%wheel ALL=(ALL:ALL) ALL`保存退出
-
-### 8. 安装微码
-
-```bash
-pacman -S amd-ucode         # AMD  处理器
-pacman -S intel-ucode       # Intel处理器
-```
-
----
-
 ## **安装grub引导**
 
 ```bash
@@ -307,6 +250,70 @@ nano /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 重新生成配置文件后你的Windows的引导就被grub找到并添加到启动菜单了
+
+## 安装微码
+
+```bash
+pacman -S amd-ucode         # AMD  处理器
+pacman -S intel-ucode       # Intel处理器
+```
+
+## 本地化设置
+
+1. 使用nano编辑 `/etc/locale.gen`
+
+```bash
+nano /etc/locale.gen    # 取消"#"注释
+```
+取消"#"注释以设置需要的语言环境如 `en_US.UTF-8 UTF-8`, `zh_CN.UTF-8 UTF-8`,`UTF-8`
+
+2. 应用语言环境设置
+
+```bash
+locale-gen # 应用语言文件会输出注释掉的语言选项
+```
+
+3. 设置系统语言环境变量，用echo快速添加文本到 `/etc/locale.conf`
+
+```bash
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
+
+## 设置主机名
+
+**编辑 `/etc/hostname`，写入你想要的名称例如:"我的电脑"**
+
+```bash
+echo "这里写名字不要用非英文的字符" > /etc/hostname
+```
+
+**编辑 `/etc/hosts`，添加 # 替换以下 `myarch` 为你的主机名**
+
+```text
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   这里填写你上一步设置的名字.localdomain 这里同样是你设置的名字
+```
+
+## 设置账户
+
+1. 添加用户 `<username>`是你的用户名
+
+```bash
+passwd    # 设置root的密码
+useradd -m -G wheel -s /bin/bash <username>  #添加账户
+userdel -f <username>    # 删除账户 -r 文件夹也一起删除！！
+passwd <username>        # 设置用户密码
+```
+
+2. 账户提权sudo用nano编辑 `/etc/sudoers`
+
+```bash
+nano /etc/sudoers
+```
+把`# %wheel ALL=(ALL:ALL) ALL`前面的#号和空格删除让它变成这样: `%wheel ALL=(ALL:ALL) ALL`保存退出
+
+---
 
 ## **安装基础程序**
 
