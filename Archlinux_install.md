@@ -1,5 +1,5 @@
 # **archlinux安装流程**
-声明:本文档由"Pixel32E"于2025.8.4更新如有失效请参考arch官方WIKI社区
+声明:本文档由"Pixel32E"于2025.8.4更新如有失效请参考arch[官方WIKI社区](https://wiki.archlinux.org/title/Main_page)
 ## 要安装archlinux发行版你需要做以下准备:
 
 - 首先[下载](https://archlinux.org/download/)官网或者镜像源提供的ISO镜像文件
