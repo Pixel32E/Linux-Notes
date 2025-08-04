@@ -1,2 +1,0 @@
-# Aachlinux_installdoc
-这是一个archlinux中文安装流程文档
