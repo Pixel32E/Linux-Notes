@@ -362,7 +362,7 @@ systemctl enable sddm              # 启动图形管理器
 
 ```bash
 sudo pacman -S plasma-desktop sddm dolphin konsole plasma-nm plasma-pa kscreen
-sudo pacman -S plasma-system-meta   # 这个包含以上plasma-nm plasma-pa kscreen plasma-desktop kde核心应用推荐安装（极致精简可跳过）
+sudo pacman -S plasma-meta   # 核心应用推荐安装（极致精简可跳过）
 sudo pacman -S systemctl enable sddm      # 启动图形管理器
 ```
 
