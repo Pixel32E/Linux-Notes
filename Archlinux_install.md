@@ -397,7 +397,7 @@ sudo pacman -S ark kate spectacle gwenview timeshift nano vim
 ### 4. 安装字体
 
 ```bash
-sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-dejavu
+sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-dejavu
 sudo pacman -S wqy-zenhei wqy-microhei
 ```
 
